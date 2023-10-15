@@ -1,12 +1,12 @@
 const Product = require('../models/product');
 
-const getAllProducts = (req, res) => {
+const getAllProducts = (req, res, next) => {
   Product.find({})
     .then((product) => res.send({ product }))
-    .catch(() => res.status(500).send({ message: 'Произошла ошибка на сервере' }));
+    .catch(next);
 };
 
-const addProduct = (req, res) => {
+const addProduct = (req, res, next) => {
   const {
     name,
     image,
@@ -21,7 +21,7 @@ const addProduct = (req, res) => {
     weight,
     structure,
   }).then((product) => res.send({ product }))
-    .catch(() => res.status(500).send({ message: 'Произошла ошибка на сервере' }));
+    .catch(next);
 };
 
 module.exports = { getAllProducts, addProduct };
