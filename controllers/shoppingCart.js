@@ -22,7 +22,7 @@ const addProductToShoppingCart = (req, res) => {
 };
 
 const handleAmountProductInShoppingCart = (req, res) => {
-  const count = req.body;
+  const count = req.body.amount;
   ShoppingCart.findByIdAndUpdate(req.params.productId, { amount: count }, { new: true })
     .then((product) => {
       if (!product) {

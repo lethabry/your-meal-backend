@@ -9,5 +9,6 @@ app.use(bodyParser.urlencoded({ extended: true }));
 mongoose.connect('mongodb://127.0.0.1:27017/yourmealdb');
 
 app.use('/products', require('./routers/product'));
+app.use('/shopping-cart', require('./routers/shoppingCart'));
 
 app.listen(PORT);
