@@ -5,6 +5,10 @@ const { Schema } = mongoose;
 
 const ShoppingCartSchema = new Schema(
   {
+    owner: {
+      type: String,
+      require: true,
+    },
     name: {
       type: String,
       required: true,
