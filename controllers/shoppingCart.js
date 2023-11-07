@@ -17,9 +17,10 @@ const addProductToShoppingCart = (req, res, next) => {
     price,
     weight,
     structure,
+    category,
   } = req.body;
   ShoppingCart.create({
-    owner, name, image, price, weight, structure,
+    owner, name, image, price, weight, structure, category,
   })
     .then((product) => res.send(product))
     .catch((err) => {
@@ -32,7 +33,7 @@ const addProductToShoppingCart = (req, res, next) => {
 
 const handleAmountProductInShoppingCart = (req, res, next) => {
   const owner = req.cookies.sessionId;
-  const { count } = req.body;
+  const count = req.body.amount;
   ShoppingCart.findById(req.params.productId)
     .then((product) => {
       if (product.owner === owner) {

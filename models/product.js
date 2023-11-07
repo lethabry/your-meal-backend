@@ -31,6 +31,14 @@ const ProductSchema = new Schema(
       type: String,
       required: true,
     }],
+    category: {
+      type: String,
+      required: true,
+    },
+    is_in_shopping_cart: {
+      type: Boolean,
+      default: false,
+    },
   },
 );
 

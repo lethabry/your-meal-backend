@@ -5,7 +5,7 @@ const { Schema } = mongoose;
 const CategorySchema = new Schema({
   name: {
     type: String,
-    require: true,
+    required: true,
     minLength: 2,
     maxLength: 32,
   },

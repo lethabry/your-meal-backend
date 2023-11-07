@@ -2,6 +2,7 @@ const express = require('express');
 const mongoose = require('mongoose');
 const bodyParser = require('body-parser');
 const cookieParser = require('cookie-parser');
+const { errors } = require('celebrate');
 
 const checkAccessCors = require('./middlewares/cors');
 const centralErrorHandler = require('./middlewares/centralErrorHandler');
@@ -22,6 +23,7 @@ app.use('/products', require('./routers/product'));
 app.use('/shopping-cart', require('./routers/shoppingCart'));
 app.use('/category', require('./routers/category'));
 
+app.use(errors());
 app.use(centralErrorHandler);
 
 app.listen(PORT);
