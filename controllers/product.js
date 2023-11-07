@@ -2,9 +2,16 @@ const Product = require('../models/product');
 const NotFoundError = require('../utils/errors/NotFoundError');
 
 const getAllProducts = (req, res, next) => {
-  Product.find({})
-    .then((products) => res.send({ products }))
-    .catch(next);
+  if (req.query.category) {
+    const { category } = req.query;
+    Product.find({ category })
+      .then((products) => res.send(products))
+      .catch(next);
+  } else {
+    Product.find({})
+      .then((products) => res.send(products))
+      .catch(next);
+  }
 };
 
 const addProduct = (req, res, next) => {
@@ -23,7 +30,7 @@ const addProduct = (req, res, next) => {
     weight,
     structure,
     category,
-  }).then((product) => res.send({ product }))
+  }).then((product) => res.send(product))
     .catch(next);
 };
 
