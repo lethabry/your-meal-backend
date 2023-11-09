@@ -56,7 +56,7 @@ const deleteProductFromShoppingCart = (req, res, next) => {
       }
       if (product.owner === owner) {
         ShoppingCart.findByIdAndRemove(req.params.productId)
-          .then(() => res.status(204).send({ message: 'Товар успешно удалён из корзины' }))
+          .then(() => res.status(200).send({ message: 'Товар успешно удалён из корзины' }))
           .catch(next);
       } else {
         throw new NotFoundError('Такого товара в корзине нет');

@@ -22,6 +22,7 @@ const addProduct = (req, res, next) => {
     weight,
     structure,
     category,
+    description,
   } = req.body;
   Product.create({
     name,
@@ -30,6 +31,7 @@ const addProduct = (req, res, next) => {
     weight,
     structure,
     category,
+    description,
   }).then((product) => res.send(product))
     .catch(next);
 };

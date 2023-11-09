@@ -16,6 +16,7 @@ const addProductValidation = celebrate({
     weight: Joi.number().required(),
     structure: Joi.array().items(Joi.string()).required(),
     category: Joi.string().required(),
+    description: Joi.string().required(),
   }),
 });
 
