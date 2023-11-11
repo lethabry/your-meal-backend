@@ -34,6 +34,7 @@ const addProductToShoppingCartValidation = celebrate({
     weight: Joi.number().required(),
     structure: Joi.array().items(Joi.string()).required(),
     category: Joi.string().required(),
+    description: Joi.string().required(),
   }),
   cookies: Joi.object().keys({
     sessionId: Joi.string().required(),
@@ -55,6 +56,12 @@ const deleteProductFromShoppingCartValidation = celebrate({
   }),
 });
 
+const cleanShoppingCartValidation = celebrate({
+  cookies: Joi.object().keys({
+    sessionId: Joi.string().required(),
+  }),
+});
+
 module.exports = {
   addCategoryValidation,
   addProductValidation,
@@ -62,4 +69,5 @@ module.exports = {
   addProductToShoppingCartValidation,
   handleAmountProductInShoppingCartValidation,
   deleteProductFromShoppingCartValidation,
+  cleanShoppingCartValidation,
 };

@@ -18,9 +18,10 @@ const addProductToShoppingCart = (req, res, next) => {
     weight,
     structure,
     category,
+    description,
   } = req.body;
   ShoppingCart.create({
-    owner, name, image, price, weight, structure, category,
+    owner, name, image, price, weight, structure, category, description,
   })
     .then((product) => res.send(product))
     .catch((err) => {
@@ -65,9 +66,26 @@ const deleteProductFromShoppingCart = (req, res, next) => {
     .catch(next);
 };
 
+const cleanShoppingCart = (req, res, next) => {
+  const owner = req.cookies.sessionId;
+  ShoppingCart.find({ owner })
+    .then((products) => {
+      if (!products.length) {
+        throw new NotFoundError('Товаров в корзине нет');
+      }
+      if (products.length) {
+        ShoppingCart.deleteMany({ owner })
+          .then(() => res.status(200).send({ message: 'Корзина очищена' }))
+          .catch(next);
+      }
+    })
+    .catch(next);
+};
+
 module.exports = {
   getAllShoppingCartList,
   addProductToShoppingCart,
   handleAmountProductInShoppingCart,
   deleteProductFromShoppingCart,
+  cleanShoppingCart,
 };
